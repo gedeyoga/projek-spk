@@ -39,12 +39,12 @@
         </div>
 
         <!-- Navbar -->
-        @include('user.navbar.navbar')
+        @include('layouts.navbar')
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
 
-        @extends('user.sidebar.sidebar')
+        @extends('layouts.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
