@@ -107,8 +107,8 @@
 
                         $('#form-edit-kriteria input[name="' + key + '"]').addClass('is-invalid');
                         $('#form-edit-kriteria select[name="' + key + '"]').addClass('is-invalid');
-                        $('<div class="invalid-feedback">' + err.responseJSON.errors[key][0] + '</div>').insertAfter('#form-create-kriteria input[name="' + key + '"]');
-                        $('<div class="invalid-feedback">' + err.responseJSON.errors[key][0] + '</div>').insertAfter('#form-create-kriteria select[name="' + key + '"]');
+                        $('<div class="invalid-feedback">' + err.responseJSON.errors[key][0] + '</div>').insertAfter('#form-edit-kriteria input[name="' + key + '"]');
+                        $('<div class="invalid-feedback">' + err.responseJSON.errors[key][0] + '</div>').insertAfter('#form-edit-kriteria select[name="' + key + '"]');
                     }
                 }
             });
