@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\KriteriaController;
 
 /*
@@ -21,12 +22,20 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    
+
     // Kriteria
-    Route::get('kriteria' , [KriteriaController::class, 'index'])->name('kriteria.index');
-    Route::get('kriteria/create' , [KriteriaController::class, 'create'])->name('kriteria.create');
-    Route::post('kriteria/store' , [KriteriaController::class, 'store'])->name('kriteria.store');
-    Route::get('kriteria/{kriteria}/edit' , [KriteriaController::class, 'edit'])->name('kriteria.edit');
-    Route::put('kriteria/{kriteria}/update' , [KriteriaController::class, 'update'])->name('kriteria.update');
-    Route::delete('kriteria/{kriteria}' , [KriteriaController::class, 'destroy'])->name('kriteria.delete');
+    Route::get('/kriteria', [KriteriaController::class, 'index'])->name('kriteria.index');
+    Route::get('/kriteria/create', [KriteriaController::class, 'create'])->name('kriteria.create');
+    Route::post('/kriteria/store', [KriteriaController::class, 'store'])->name('kriteria.store');
+    Route::get('/kriteria/{kriteria}/edit', [KriteriaController::class, 'edit'])->name('kriteria.edit');
+    Route::put('/kriteria/{kriteria}/update', [KriteriaController::class, 'update'])->name('kriteria.update');
+    Route::delete('kriteria/{kriteria}', [KriteriaController::class, 'destroy'])->name('kriteria.delete');
+
+    // user
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+
+    Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+    Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/user/{user}/update', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');
 });
