@@ -18,7 +18,7 @@
                         {{ Auth::user()->name }}
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a>
                         <button class="dropdown-item" type="submit">Logout</button>
                     </div>
             </div>

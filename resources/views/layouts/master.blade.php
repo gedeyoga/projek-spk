@@ -107,8 +107,12 @@
     <!-- AdminLTE for demo purposes -->
     <!-- <script src="dist/js/demo.js"></script> -->
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+    <!-- <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script> -->
     <script src="{{ asset('plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ asset('js/public.js') }}"></script>
+
+    @include('components.flash-message')
+    
     @routes
     @stack('javascript')
 </body>
