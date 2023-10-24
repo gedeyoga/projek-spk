@@ -1,9 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-@extends('layouts.master')
-
-@section('content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -26,11 +23,10 @@
 <!-- /.content-header -->
 
 <!-- Main content -->
-<section class="content">
+<div class="content">
     <div class="container-fluid">
         
     </div>
-</section>
+</div>
 <!-- right col -->
-@endsection
 @endsection

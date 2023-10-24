@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -67,5 +68,35 @@ class UserController extends Controller
         return response()->json([
             'message' => 'User berhasil dihapus!'
         ]);
+    }
+
+    public function profile(Request $request)
+    {
+        return view('user.profile' , [
+            'user'=> $request->user()
+        ]);
+    }
+
+    public function updateProfile(User $user , Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => [
+                'required',
+                'string',
+                'email',
+                Rule::unique('users')->ignore($user->id),
+            ]
+        ]);
+
+        $data = $request->all();
+
+        if(!is_null($request->get('new_password'))) {
+            $data['password'] = Hash::make($request->get('new_password'));
+        }
+
+        $user->update($data);
+
+        return redirect()->route('user.profile')->with('success', 'Berhasil merubah profile');
     }
 }
