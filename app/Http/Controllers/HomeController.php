@@ -23,9 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $angka = 0.4417891011;
-        $angkabaru = number_format($angka, 3);
-        dd($angkabaru);
         return view('dashboard.index');
     }
 }

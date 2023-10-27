@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Ranking;
+use Illuminate\Database\Eloquent\Model;
 use Alfa6661\AutoNumber\AutoNumberTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class Alternatif extends Model
 {
-    use HasFactory , AutoNumberTrait;
+    use HasFactory, AutoNumberTrait;
 
-    protected $fillable = ['kode' , 'name'];
+    protected $fillable = ['kode', 'name'];
+
+    protected $table = 'alternatif';
 
     /**
      * Return the autonumber configuration array for this model.
@@ -27,5 +30,15 @@ class Alternatif extends Model
                 'length' => 2
             ]
         ];
+    }
+
+    public function penilaian()
+    {
+        return $this->hasMany(Penilaian::class, 'alternatif_id');
+    }
+
+    public function ranking()
+    {
+        return $this->hasMany(Ranking::class, 'alternatif_id');
     }
 }

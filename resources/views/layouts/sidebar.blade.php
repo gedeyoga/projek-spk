@@ -30,6 +30,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('alternatif.index') }}"
+                        class="nav-link {{ request()->segment(1) == 'alternatif' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            Alternatif
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('kriteria.index') }}"
                         class="nav-link {{ request()->segment(1) == 'kriteria' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-home"></i>

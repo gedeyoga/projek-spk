@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlternatifController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -40,4 +41,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/profile/{user}', [UserController::class, 'updateProfile'])->name('user.updateProfile');
     Route::put('/user/{user}/update', [UserController::class, 'update'])->name('user.update');
     Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');
+
+    // alternatif
+    Route::get('/alternatif', [AlternatifController::class, 'index'])->name('alternatif.index');
+    Route::get('/alternatif/create', [AlternatifController::class, 'create'])->name('alternatif.create');
+    Route::post('/alternatif/store', [AlternatifController::class, 'store'])->name('alternatif.store');
+    Route::get('/alternatif/{alternatif}/edit}', [AlternatifController::class, 'edit'])->name('alternatif.edit');
+    Route::put('/alternatif/{alternatif}/edit}', [AlternatifController::class, 'update'])->name('alternatif.update');
+    Route::delete('/alternatif/{alternatif}', [AlternatifController::class, 'destroy'])->name('alternatif.delete');
 });

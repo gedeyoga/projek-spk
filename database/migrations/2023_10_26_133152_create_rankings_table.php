@@ -15,7 +15,7 @@ class CreateRankingsTable extends Migration
     {
         Schema::create('rankings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('karyawan_id');
+            $table->unsignedBigInteger('alternatif_id');
             $table->float('total_nilai');
             $table->timestamps();
         });
