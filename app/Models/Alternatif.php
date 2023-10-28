@@ -39,6 +39,6 @@ class Alternatif extends Model
 
     public function ranking()
     {
-        return $this->hasMany(Ranking::class, 'alternatif_id');
+        return $this->hasOne(Ranking::class, 'alternatif_id');
     }
 }

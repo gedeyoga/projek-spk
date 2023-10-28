@@ -11,7 +11,10 @@ class Ranking extends Model
 
     protected $table = 'rankings';
 
-    protected $fillable = ['karyawan_id' , 'total_nilai'];
+    protected $fillable = ['alternatif_id', 'total_nilai'];
 
-    
+    public function alternatif()
+    {
+        return $this->belongsTo(Alternatif::class);
+    }
 }

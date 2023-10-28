@@ -24,6 +24,61 @@
 
     <!-- Main content -->
     <div class="content">
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <p>Total Alternatif</p>
+                        <h3>{{ count($alternatifs) }}</h3>
+
+
+                    </div>
+                    <div class="icon">
+                        {{-- <i class="ion ion-person-add"></i> --}}
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <p>Total Kriteria</p>
+                        <h3>{{ count($kriterias) }}</h3>
+
+
+                    </div>
+                    <div class="icon">
+                        {{-- <i class="ion ion-person-add"></i> --}}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        @php
+
+            $datas = [];
+
+            class Data
+            {
+                public $nama;
+                public $nilai;
+
+                public function __construct($nama, $nilai)
+                {
+                    $this->nama = $nama;
+                    $this->nilai = $nilai;
+                }
+            }
+            foreach ($rankings as $ranking) {
+                $datas[] = new Data($ranking->alternatif->name, $ranking->total_nilai);
+            }
+
+        @endphp
+
+
+        </ul>
         <div class="container-fluid">
 
             <canvas id="myChart"></canvas>
@@ -35,13 +90,30 @@
     <script>
         const ctx = document.getElementById('myChart');
 
+        const datas = @json($datas);
+
+        const labelChart = []
+        const dataChart = [];
+
+        let nomor = 1;
+        datas.forEach((data) => {
+            labelChart.push(`Ranking ${nomor} / ${data.nama}`)
+            dataChart.push(
+                data.nilai,
+            )
+
+            nomor++;
+        });
+
+        console.log(dataChart)
+
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: labelChart,
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    label: 'Rangking',
+                    data: dataChart,
                     borderWidth: 1
                 }]
             },
