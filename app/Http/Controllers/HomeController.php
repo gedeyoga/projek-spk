@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Ranking;
 use App\Models\Kriteria;
 use App\Models\Alternatif;
+use App\Traits\PerhitunganMoora;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    use PerhitunganMoora;
+
     /**
      * Create a new controller instance.
      *
@@ -26,6 +29,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index', ['alternatifs' => Alternatif::all(), 'kriterias' => Kriteria::all(), 'rankings' =>  Ranking::with(['alternatif'])->orderBy('total_nilai', 'desc')->get()]);
+        $alternatifs = Alternatif::all();
+        $rankings = $this->pencarianNilaiRanking($alternatifs);
+
+        return view('dashboard.index', [
+            'alternatifs' => $alternatifs, 
+            'kriterias' => Kriteria::all(), 
+            'rankings' =>  $rankings->sortByDesc('total_nilai')
+        ]);
     }
 }

@@ -72,7 +72,7 @@
                 }
             }
             foreach ($rankings as $ranking) {
-                $datas[] = new Data($ranking->alternatif->name, $ranking->total_nilai);
+                $datas[] = new Data($ranking->name, $ranking->total_nilai);
             }
 
         @endphp
