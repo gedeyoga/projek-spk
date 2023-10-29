@@ -11,6 +11,7 @@ class Alternatif extends Model
     use HasFactory , AutoNumberTrait;
 
     protected $fillable = ['kode' , 'name'];
+    protected $table = 'alternatif';
 
     /**
      * Return the autonumber configuration array for this model.
@@ -27,5 +28,10 @@ class Alternatif extends Model
                 'length' => 2
             ]
         ];
+    }
+
+    public function penilaian()
+    {
+        return $this->hasMany(Penilaian::class , 'alternatif_id')->orderBy('kriteria_id' , 'asc');
     }
 }

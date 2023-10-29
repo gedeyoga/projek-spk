@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\PerhitunganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/profile/{user}', [UserController::class, 'updateProfile'])->name('user.updateProfile');
     Route::put('/user/{user}/update', [UserController::class, 'update'])->name('user.update');
     Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');
+
+
+    // Perhitungan
+    Route::get('/perhitungan', [PerhitunganController::class, 'index'])->name('perhitungan.index');
 });
