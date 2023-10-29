@@ -26,7 +26,7 @@ class KriteriaController extends Controller
         ->when(!is_null($request->get('type')) , function($query) use ($request) {
             return $query->whereIn('type' , $request->get('type'));
         })
-        ->orderBy('created_at', 'desc')
+        ->orderBy('kode', 'desc')
         ->paginate(10);
 
         return view('kriteria.index', compact('kriterias'));

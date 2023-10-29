@@ -12,7 +12,7 @@ class Kriteria extends Model
     use HasFactory , SoftDeletes , AutoNumberTrait;
 
     protected $table = 'kriteria';
-    protected $fillable = ['kode' , 'name' , 'type', 'nilai_bobot' , 'optimum'];
+    protected $fillable = ['kode' , 'name' , 'type', 'optimum'];
 
     /**
      * Return the autonumber configuration array for this model.
@@ -24,7 +24,7 @@ class Kriteria extends Model
         return [
             'kode' => [
                 'format' => function () {
-                    return 'A?';
+                    return 'C?';
                 },
                 'length' => 2
             ]

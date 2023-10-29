@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\PerhitunganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/alternatif/{alternatif}/edit}', [AlternatifController::class, 'edit'])->name('alternatif.edit');
     Route::put('/alternatif/{alternatif}/edit}', [AlternatifController::class, 'update'])->name('alternatif.update');
     Route::delete('/alternatif/{alternatif}', [AlternatifController::class, 'destroy'])->name('alternatif.delete');
+
+    // Perhitungan
+    Route::get('/perhitungan', [PerhitunganController::class, 'index'])->name('perhitungan.index');
 });
