@@ -18,10 +18,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call([
-            UserSeeder::class,
-            AlternatifSeeder::class,
-            RangkingsSeeder::class,
-        ]);
+        $this->call(UserSeeder::class);
+        $this->call(KriteriaSeeder::class);
+        $this->call(AlternatifSeeder::class);
     }
 }
