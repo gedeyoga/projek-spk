@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-
+use App\Models\Alternatif;
+use App\Models\Kriteria;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RangkingsSeeder;
 use Database\Seeders\AlternatifSeeder;
