@@ -52,7 +52,9 @@ class UserController extends Controller
 
         $data = $request->all();
 
-        $data['password'] =  Hash::make($data['password']);
+        if(!is_null($request->get('new_password'))) {
+            $data['password'] =  Hash::make($request->get('new_password'));
+        }
 
         $user->update($data);
 

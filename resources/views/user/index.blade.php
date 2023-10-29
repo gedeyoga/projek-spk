@@ -64,9 +64,11 @@
                                         <button onclick="onShowModal('{{ $data->id }}')"
                                             class="btn btn-sm btn-info mr-2"><i
                                                 class="fas fa-pencil-alt fa-fw mr-1"></i>Edit</button>
+                                        @if(Auth::user()->id != $data->id)
                                         <button onclick="handleDelete('{{ $data->id }}')"
                                             class="btn btn-sm btn-danger mr-2"><i
                                                 class="fas fa-trash fa-fw mr-1"></i>Hapus</button>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

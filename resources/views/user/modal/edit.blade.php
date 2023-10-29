@@ -33,11 +33,11 @@
 
 
                     <div class="form-group row">
-                        <label for="name" class="col-sm-2 col-form-label">Password</label>
+                        <label for="name" class="col-sm-2 col-form-label">Password Baru</label>
                         <div class="col-sm-10">
-                            <input type="password" id="password" name="password"
-                                class="form-control @error('password') is-invalid @enderror"
-                                value="{{ old('password') }}" autocomplete="off" placeholder="Masukkan Password...">
+                            <input type="password" id="password" name="new_password"
+                                class="form-control @error('new_password') is-invalid @enderror"
+                                value="{{ old('new_password') }}" autocomplete="off" placeholder="Masukkan Password Baru...">
                         </div>
                     </div>
 
@@ -68,7 +68,7 @@
                 },
                 success: function(response) {
                     Swal.close();
-                    $('#form-edit-user input[name="user_id"]').remove();
+                    $('#form-edit-user input[name="id"]').remove();
                     $('#modalEditFormUser').modal('show');
                     let name = $('#name');
                     let email = $('#email');
@@ -79,8 +79,7 @@
                     email.val(response.data.email);
 
 
-                    $('#form-edit-user').append('<input type="hidden" name="user_id" value="' + id +
-                        '">');
+                    $('#form-edit-user').append('<input type="hidden" name="id" value="' + id +'">');
                 },
                 error: function(err) {
                     Swal.close();
@@ -98,7 +97,7 @@
                     type: "POST",
                     data: $(this).serialize(),
                     url: route("user.update", {
-                        user: $('#form-edit-user input[name="user_id"]').val()
+                        user: $('#form-edit-user input[name="id"]').val()
                     }),
                     beforeSend: function() {
                         Swal.showLoading()
