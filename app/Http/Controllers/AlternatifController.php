@@ -58,9 +58,12 @@ class AlternatifController extends Controller
         return redirect('/alternatif')->with('success', 'Data berhasil ditambahkan!');
     }
 
-    public function edit(Alternatif $alternatif)
+    public function edit($alternatif)
     {
-        return view('alternatif.edit', ['alternatif' => $alternatif, 'kriterias' => Kriteria::all()]);
+        $alternatifId = Alternatif::with(['penilaian'])->find($alternatif);
+
+
+        return view('alternatif.edit', ['alternatif' => $alternatifId, 'kriterias' => Kriteria::all()]);
     }
 
     public function update(Request $request, Alternatif $alternatif)

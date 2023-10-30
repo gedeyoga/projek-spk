@@ -10,7 +10,7 @@ class Penilaian extends Model
     use HasFactory;
     protected $table = 'penilaian';
 
-    protected $fillable = ['alternatif_id' , 'kriteria_id' , 'nilai'];
+    protected $fillable = ['alternatif_id', 'kriteria_id', 'nilai'];
 
     public function getNilaiPangkatAttribute()
     {
