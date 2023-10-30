@@ -40,15 +40,22 @@ class AlternatifController extends Controller
         $datas = $request->all();
         $propertyNames = array_keys($datas);
 
+        $propertyNames = array_map(function ($item) {
+            return str_replace('_', ' ', $item);
+        }, $propertyNames);
+
+
+
         $data = [];
 
         foreach ($kriterias as $kriteria) {
             foreach ($propertyNames as $data) {
                 if ($data === $kriteria->name) {
+                    $convertDataStrToUnderScore = str_replace(' ', '_', $data);
                     Penilaian::create([
                         'alternatif_id' => $alternatif->id,
                         'kriteria_id' => $kriteria->id,
-                        'nilai' => $datas[$data]
+                        'nilai' => $datas[$convertDataStrToUnderScore]
                     ]);
                 }
             }
@@ -58,12 +65,12 @@ class AlternatifController extends Controller
         return redirect('/alternatif')->with('success', 'Data berhasil ditambahkan!');
     }
 
-    public function edit($alternatif)
+    public function edit(Alternatif $alternatif)
     {
-        $alternatifId = Alternatif::with(['penilaian'])->find($alternatif);
 
 
-        return view('alternatif.edit', ['alternatif' => $alternatifId, 'kriterias' => Kriteria::all()]);
+
+        return view('alternatif.edit', ['alternatif' => $alternatif, 'kriterias' => Kriteria::all()]);
     }
 
     public function update(Request $request, Alternatif $alternatif)
@@ -76,14 +83,19 @@ class AlternatifController extends Controller
         $datas = $request->all();
         $propertyNames = array_keys($datas);
 
+        $propertyNames = array_map(function ($item) {
+            return str_replace('_', ' ', $item);
+        }, $propertyNames);
+
         $data = [];
 
         foreach ($kriterias as $kriteria) {
             foreach ($propertyNames as $data) {
                 if ($data === $kriteria->name) {
+                    $convertDataStrToUnderScore = str_replace(' ', '_', $data);
                     Penilaian::where('alternatif_id', $alternatif->id)
                         ->where('kriteria_id', $kriteria->id)
-                        ->update(['nilai' => $datas[$data]]);
+                        ->update(['nilai' => $datas[$convertDataStrToUnderScore]]);
                 }
             }
         }

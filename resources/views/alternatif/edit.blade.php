@@ -52,7 +52,6 @@
                                                 foreach ($alternatif->penilaian as $penilaian) {
                                                     if ($penilaian->kriteria_id === $kriteria->id) {
                                                         $nilaiKriteria = $penilaian->nilai;
-                                                        echo 'fefe';
                                                     }
                                                 }
                                             @endphp
