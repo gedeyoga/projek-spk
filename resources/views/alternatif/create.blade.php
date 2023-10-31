@@ -37,7 +37,8 @@
                                         <label for="name" class="col-form-label">Nama</label>
                                         <input type="text" name="name"
                                             class="form-control @error('name') is-invalid @enderror"
-                                            value="{{ old('password') }}" autocomplete="off" placeholder="Masukkan nama...">
+                                            value="{{ old('password') }}" autocomplete="off" placeholder="Masukkan nama..."
+                                            required>
                                     </div>
 
                                     @foreach ($kriterias as $kriteria)
@@ -46,7 +47,7 @@
                                             <input type="number" name="{{ $kriteria->name }}"
                                                 class="form-control @error($kriteria->name) is-invalid @enderror"
                                                 value="{{ old($kriteria->name) }}" autocomplete="off"
-                                                placeholder="Masukkan {{ $kriteria->name }}..">
+                                                placeholder="Masukkan {{ $kriteria->name }}.." required>
                                         </div>
                                     @endforeach
 

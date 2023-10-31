@@ -41,7 +41,7 @@
                                         <input type="text" name="name"
                                             class="form-control @error('name') is-invalid @enderror"
                                             value="{{ old('name', $alternatif->name) }}" autocomplete="off"
-                                            placeholder="Masukkan nama...">
+                                            placeholder="Masukkan nama..." required>
                                     </div>
 
                                     @foreach ($kriterias as $kriteria)
@@ -58,7 +58,7 @@
                                             <input type="number" name="{{ $kriteria->name }}"
                                                 class="form-control @error($kriteria->name) is-invalid @enderror"
                                                 value="{{ $nilaiKriteria }}" autocomplete="off"
-                                                placeholder="Masukkan nilai..">
+                                                placeholder="Masukkan nilai.." required>
                                         </div>
                                     @endforeach
 
