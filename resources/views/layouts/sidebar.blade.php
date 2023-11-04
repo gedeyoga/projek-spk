@@ -60,6 +60,22 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('laporan.index') }}" class="nav-link {{ request()->segment(1) == 'laporan' ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-file"></i>
+                        <p>
+                            Laporan
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('company.edit') }}" class="nav-link {{ request()->segment(1) == 'setting' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-cogs"></i>
+                        <p>
+                            Setting
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Alfa6661\AutoNumber\AutoNumberServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Application Service Providers...

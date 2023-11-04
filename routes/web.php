@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\AlternatifController;
+use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PerhitunganController;
 
 /*
@@ -53,4 +55,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Perhitungan
     Route::get('/perhitungan', [PerhitunganController::class, 'index'])->name('perhitungan.index');
+
+    // Laporan
+    Route::get('/laporan/ranking', [LaporanController::class , 'laporanRanking'])->name('laporan.ranking');
+    Route::get('/laporan', [LaporanController::class , 'index'])->name('laporan.index');
+
+    //Company
+    Route::get('/setting', [CompanyController::class, 'edit'])->name('company.edit');
+    Route::put('/setting/{company}/update', [CompanyController::class, 'update'])->name('company.update');
 });
