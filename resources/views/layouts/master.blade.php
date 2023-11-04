@@ -43,7 +43,7 @@
 
         <!-- Main Sidebar Container -->
 
-        @extends('layouts.sidebar')
+        @include('layouts.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -103,6 +103,7 @@
     <!-- overlayScrollbars -->
     <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <!-- AdminLTE App -->
+    <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <!-- <script src="dist/js/demo.js"></script> -->
@@ -112,7 +113,7 @@
     <script src="{{ asset('js/public.js') }}"></script>
 
     @include('components.flash-message')
-    
+
     @routes
     @stack('javascript')
 </body>

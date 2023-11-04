@@ -24,7 +24,15 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                Data Kriteria
+                <div class="d-flex justify-content-between">
+                    <span>Data Kriteria</span>
+                    <span>
+                        <a class="btn btn-outline-dark" href="{{  route('laporan.ranking') }}" target="_blank">
+                            <i class="fas fa-print"></i>
+                            Cetak PDF
+                        </a>
+                    </span>
+                </div>
             </div>
             <div class="card-body">
                 <table class="table w-100 table-sm">
