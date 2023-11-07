@@ -64,8 +64,8 @@
 
 
                                 </div>
-                                <button type="submit" class="btn btn-primary">Simpan Alterantif</button>
-                            </form>
+                                       <button type="submit" class="btn btn-primary">Edit Alterantif</button>
+
                         </div>
                     </div>
 
