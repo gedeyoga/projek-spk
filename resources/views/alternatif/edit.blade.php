@@ -64,7 +64,7 @@
 
 
                                 </div>
-                                <button type="submit" class="btn btn-primary">Tambah Alterantif</button>
+                                <button type="submit" class="btn btn-primary">Simpan Alterantif</button>
                             </form>
                         </div>
                     </div>

@@ -24,13 +24,13 @@
            with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a class="nav-link {{ Request::route()->getName() == 'home' ? 'active' : '' }}" href="{{ route('home') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('alternatif.index') }}" class="nav-link {{ request()->segment(1) == 'alternatif' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-home"></i>
+                        <i class="nav-icon fas fa-address-card"></i>
                         <p>
                             Alternatif
                         </p>
@@ -38,7 +38,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('kriteria.index') }}" class="nav-link {{ request()->segment(1) == 'kriteria' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-home"></i>
+                        <i class="nav-icon fas fa-star"></i>
                         <p>
                             Kriteria
                         </p>
@@ -46,7 +46,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('user.index') }}" class="nav-link {{ request()->segment(1) == 'user' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-home"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
                             User
                         </p>
@@ -54,7 +54,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('perhitungan.index') }}" class="nav-link {{ request()->segment(1) == 'perhitungan' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-home"></i>
+                        <i class="nav-icon fas fa-list-alt"></i>
                         <p>
                             Perhitungan
                         </p>
