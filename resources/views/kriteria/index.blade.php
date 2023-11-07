@@ -49,7 +49,7 @@
                                 <th scope="col">Kode</th>
                                 <th scope="col">Nama Kriteria</th>
                                 <th scope="col">Tipe</th>
-                                <th scope="col">Nilai Bobot</th>
+
                                 <th scope="col">Option</th>
                             </tr>
                         </thead>
@@ -60,7 +60,7 @@
                                     <td>{{ $kriteria->kode }}</td>
                                     <td>{{ $kriteria->name }}</td>
                                     <td>{{ $kriteria->type }}</td>
-                                    <td>{{ $kriteria->nilai_bobot }}</td>
+
                                     <td class="d-flex">
                                         <button onclick="onShowModal('{{ $kriteria->id }}')"
                                             class="btn btn-sm btn-info mr-2"><i
