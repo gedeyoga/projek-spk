@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(KriteriaSeeder::class);
         $this->call(AlternatifSeeder::class);
+        $this->call(AlternatifRecordSeeder::class);
     }
 }
