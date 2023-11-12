@@ -64,6 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Perhitungan
     Route::get('/perhitungan', [PerhitunganController::class, 'index'])->name('perhitungan.index');
+    Route::post('/perhitungan/save', [PerhitunganController::class, 'saveRecordPerhitungan'])->name('perhitungan.save');
 
     // Laporan
     Route::get('/laporan/ranking', [LaporanController::class, 'laporanRanking'])->name('laporan.ranking');

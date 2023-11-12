@@ -50,17 +50,37 @@
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span>Data Kinerja Karyawan</span>
-                        <span>
-                            <a class="btn btn-outline-dark" href="{{ route('laporan.ranking') }}" target="_blank">
-                                <i class="fas fa-print"></i>
-                                Cetak PDF
-                            </a>
-                        </span>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <form action="{{ route('laporan.index') }}" method="get" class="d-flex">
+                    <div class="form-group d-flex align-items-center mr-3">
+                        <label class="mr-3">Periode:</label>
+                        <div class="input-group date" id="periode" data-target-input="nearest">
+                            <input type="text" name="periode" class="form-control datetimepicker-input" data-target="#periode" />
+                            <div class="input-group-append" data-target="#periode" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="mt-1">
+                        <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-fw fa-search"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span>Data Kinerja Karyawan</span>
+                    <span>
+                        <a class="btn btn-outline-dark" href="{{  route('laporan.ranking',  ['periode' => request()->get('periode' , date('Y'))]) }}" target="_blank">
+                            <i class="fas fa-print"></i>
+                            Cetak PDF
+                        </a>
+                    </span>
                 </div>
                 <div class="card-body">
                     <table class="table w-100 table-sm">
@@ -101,4 +121,17 @@
 @endsection
 
 @push('javascript')
+
+
+<script>
+    let datePeriode = "{{ !is_null( request()->get('periode')) ?  ''. request()->get('periode') : ''. date('Y') }}";
+
+    $('#periode').datetimepicker({
+        format: 'YYYY',
+        viewMode: 'years', // Hanya menampilkan pilihan tahun
+        minViewMode: 'years', // Minimum view mode adalah tahun
+        defaultDate: moment(datePeriode),
+    });
+</script>
+
 @endpush

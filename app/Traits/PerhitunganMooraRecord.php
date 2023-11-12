@@ -2,16 +2,12 @@
 
 namespace App\Traits;
 
-use App\Models\Penilaian;
 use App\Models\PenilaianRecord;
 use Illuminate\Database\Eloquent\Collection;
 
-trait PerhitunganMoora
+trait PerhitunganMooraRecord
 {
-
-    public $penilaian_model = Penilaian::class;
-
-    public function normalisasiByKriteria($penilaian, Collection $penilaianByKriteria)
+    public function normalisasiByKriteria(PenilaianRecord $penilaian, Collection $penilaianByKriteria)
     {
         $hitung = $penilaian->nilai / sqrt($penilaianByKriteria->sum('nilai_pangkat'));
         return number_format($hitung, 3);
@@ -19,7 +15,7 @@ trait PerhitunganMoora
 
     public function normalisasiMatriks(Collection $alternatifs)
     {
-        $penilaian_all = $this->penilaian_model::whereIn('alternatif_id', $alternatifs->map(fn ($item) => $item->id)->toArray())->get();
+        $penilaian_all = PenilaianRecord::whereIn('alternatif_id', $alternatifs->map(fn($item) => $item->id)->toArray())->get();
 
         foreach ($alternatifs as $alternatif) {
             foreach ($alternatif->penilaian as $data_nilai) {
@@ -30,13 +26,8 @@ trait PerhitunganMoora
         return $alternatifs;
     }
 
-    public function pencarianNilaiRanking(Collection $alternatifs , $from_record = false)
+    public function pencarianNilaiRanking(Collection $alternatifs)
     {
-
-        if($from_record) {
-            $this->penilaian_model = PenilaianRecord::class;
-        }
-
         $alternatif_ternormalisasi = $this->normalisasiMatriks($alternatifs);
 
         foreach ($alternatif_ternormalisasi as $alternatif) {
