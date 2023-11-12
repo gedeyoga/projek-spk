@@ -49,7 +49,7 @@
 <body>
     <div id="header">
             <h4>{{ $company->name }}</h4>
-            <h3>Laporan Kinerja Karyawan</h3>
+            <h3>Laporan Kinerja Karyawan {{ date('Y' , strtotime($periode)) }}</h3>
 
     </div>
     <div id="footer">
