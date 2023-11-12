@@ -7,7 +7,8 @@
     <title>{{ env('APP_NAME') }} | Log in</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- icheck bootstrap -->
@@ -19,7 +20,8 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            {{ env('APP_NAME') }}
+            <img src="logo/logo.jpeg" width="100" height="100" alt="logo">
+            <h3 class="mt-2">Kidz Cafe Sanur</h3>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -28,9 +30,9 @@
                 <p class="login-box-msg">Sign in to start your session</p>
 
                 @error('email')
-                <div class="alert alert-danger" role="alert">
-                    {{ $message }}
-                </div>
+                    <div class="alert alert-danger" role="alert">
+                        {{ $message }}
+                    </div>
                 @enderror
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -53,7 +55,8 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                                    {{ old('remember') ? 'checked' : '' }}>
 
                                 <label class="form-check-label" for="remember">
                                     {{ __('Remember Me') }}

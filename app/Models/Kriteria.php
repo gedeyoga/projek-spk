@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\KriteriaNilai;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Alfa6661\AutoNumber\AutoNumberTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Kriteria extends Model
 {
-    use HasFactory , SoftDeletes , AutoNumberTrait;
+    use HasFactory, SoftDeletes, AutoNumberTrait;
 
     protected $table = 'kriteria';
-    protected $fillable = ['kode' , 'name' , 'type', 'optimum'];
+    protected $fillable = ['kode', 'name', 'type', 'optimum'];
 
     /**
      * Return the autonumber configuration array for this model.
@@ -31,5 +32,8 @@ class Kriteria extends Model
         ];
     }
 
-
+    public function kriteria_nilai()
+    {
+        return  $this->hasMany(KriteriaNilai::class, 'kriteria_id');
+    }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\NilaiKriteriaController;
 use App\Http\Controllers\PerhitunganController;
 
 /*
@@ -35,6 +36,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/kriteria/{kriteria}/update', [KriteriaController::class, 'update'])->name('kriteria.update');
     Route::delete('kriteria/{kriteria}', [KriteriaController::class, 'destroy'])->name('kriteria.delete');
 
+    // nilai kriteria
+    Route::get('/nilai-kriteria', [NilaiKriteriaController::class, 'index'])->name('nilai-kriteria.index');
+    Route::post('/nilai-kriteria/store', [NilaiKriteriaController::class, 'store'])->name('nilai-kriteria.store');
+    Route::get('/nilai-kriteria/{kriteria}/edit', [NilaiKriteriaController::class, 'edit'])->name('nilai-kriteria.edit');
+    Route::put('/nilai-kriteria/{kriteria}/update', [NilaiKriteriaController::class, 'update'])->name('nilai-kriteria.update');
+    Route::delete('/nilai-kriteria/{kriteria}', [NilaiKriteriaController::class, 'destroy'])->name('nilai-kriteria.delete');
+
+
     // user
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
 
@@ -57,8 +66,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/perhitungan', [PerhitunganController::class, 'index'])->name('perhitungan.index');
 
     // Laporan
-    Route::get('/laporan/ranking', [LaporanController::class , 'laporanRanking'])->name('laporan.ranking');
-    Route::get('/laporan', [LaporanController::class , 'index'])->name('laporan.index');
+    Route::get('/laporan/ranking', [LaporanController::class, 'laporanRanking'])->name('laporan.ranking');
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
 
     //Company
     Route::get('/setting', [CompanyController::class, 'edit'])->name('company.edit');
