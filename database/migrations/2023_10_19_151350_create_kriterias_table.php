@@ -17,9 +17,10 @@ class CreateKriteriasTable extends Migration
             $table->id();
             $table->string('kode');
             $table->string('name');
-            $table->enum('type' , ['benefit' , 'cost']);
+            $table->enum('type', ['benefit', 'cost']);
             $table->float('nilai_bobot');
-            $table->enum('optimum' , ['min', 'max']);
+            $table->enum('optimum', ['min', 'max']);
+
             $table->timestamps();
             $table->softDeletes();
         });

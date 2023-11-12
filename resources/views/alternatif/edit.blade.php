@@ -43,28 +43,59 @@
                                             value="{{ old('name', $alternatif->name) }}" autocomplete="off"
                                             placeholder="Masukkan nama..." required>
                                     </div>
-
                                     @foreach ($kriterias as $kriteria)
                                         <div class="col-sm-10">
                                             <label for="name" class="col-form-label">{{ $kriteria->name }}</label>
                                             @php
-                                                $nilaiKriteria = old($kriteria->name);
+                                                $nilaiKriteria = null;
+                                                $ket = null;
                                                 foreach ($alternatif->penilaian as $penilaian) {
                                                     if ($penilaian->kriteria_id === $kriteria->id) {
                                                         $nilaiKriteria = $penilaian->nilai;
+
+                                                        if ($penilaian->nilai == 1) {
+                                                            $ket = $kriteria->kriteria_nilai[0]->ket1;
+                                                        }
+                                                        if ($penilaian->nilai == 2) {
+                                                            $ket = $kriteria->kriteria_nilai[0]->ket2;
+                                                        }
+                                                        if ($penilaian->nilai == 3) {
+                                                            $ket = $kriteria->kriteria_nilai[0]->ket3;
+                                                        }
+                                                        if ($penilaian->nilai == 4) {
+                                                            $ket = $kriteria->kriteria_nilai[0]->ket4;
+                                                        }
+                                                        if ($penilaian->nilai == 5) {
+                                                            $ket = $kriteria->kriteria_nilai[0]->ket5;
+                                                        }
                                                     }
                                                 }
+
                                             @endphp
-                                            <input type="number" name="{{ $kriteria->name }}"
+                                            <select type="number" name="{{ $kriteria->name }}"
                                                 class="form-control @error($kriteria->name) is-invalid @enderror"
-                                                value="{{ $nilaiKriteria }}" autocomplete="off"
-                                                placeholder="Masukkan nilai.." required>
+                                                autocomplete="off" placeholder="Masukkan nilai.."
+                                                onchange="changeHandler(this, '{{ $kriteria->kriteria_nilai[0] }}', '{{ $kriteria->name }}')"
+                                                required>
+                                                <option value="1" {{ $nilaiKriteria == 1 ? 'selected' : '' }}>1
+                                                </option>
+                                                <option value="2" {{ $nilaiKriteria == 2 ? 'selected' : '' }}>2
+                                                </option>
+                                                <option value="3" {{ $nilaiKriteria == 3 ? 'selected' : '' }}>3
+                                                </option>
+                                                <option value="4" {{ $nilaiKriteria == 4 ? 'selected' : '' }}>4
+                                                </option>
+                                                <option value="5" {{ $nilaiKriteria == 5 ? 'selected' : '' }}>5
+                                                </option>
+                                            </select>
+                                            <p id="{{ $kriteria->name }}">Keterangan : {{ $ket }}</p>
                                         </div>
                                     @endforeach
 
 
+
                                 </div>
-                                       <button type="submit" class="btn btn-primary">Edit Alterantif</button>
+                                <button type="submit" class="btn btn-primary">Edit Alterantif</button>
 
                         </div>
                     </div>
@@ -74,6 +105,35 @@
             </div>
         </div>
         <!-- /.container-fluid -->
+
+        @push('javascript')
+            <script>
+                function elemen(elemen, currentElemen, jsonData) {
+                    setTimeout(() => {
+                        const elemenName = document.getElementById(elemen);
+
+                        if (currentElemen.value === '1') {
+                            elemenName.innerHTML = `Keterangan : ${jsonData.ket1}`
+                        } else if (currentElemen.value === '2') {
+                            elemenName.innerHTML = `Keterangan : ${jsonData.ket2}`;
+                        } else if (currentElemen.value === '3') {
+                            elemenName.innerHTML = `Keterangan : ${jsonData.ket3}`
+                        } else if (currentElemen.value === '4') {
+                            elemenName.innerHTML = `Keterangan : ${jsonData.ket4}`
+                        } else if (currentElemen.value === '5') {
+                            elemenName.innerHTML = `Keterangan : ${jsonData.ket5}`
+                        }
+                    }, 1);
+                }
+
+                function changeHandler(currentElemen, data, nameElemen) {
+                    const jsonData = JSON.parse(data);
+                    elemen(nameElemen, currentElemen, jsonData)
+
+
+                }
+            </script>
+        @endpush
 
     </div>
     <!-- /.content -->

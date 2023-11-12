@@ -16,18 +16,18 @@ class KriteriaController extends Controller
      */
     public function index(Request $request)
     {
-        $kriterias = Kriteria::when(!is_null($request->get('search')) , function($query) use ($request){
-            return $query->where(function($q) use ($request) {
-                $q->where('name' , 'like' , '%'.$request->get('search').'%')
-                    ->orWhere('type' , 'like' , '%' . $request->get('search') . '%')
-                    ->orWhere('kode' , 'like' , '%' . $request->get('search') . '%');
+        $kriterias = Kriteria::when(!is_null($request->get('search')), function ($query) use ($request) {
+            return $query->where(function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->get('search') . '%')
+                    ->orWhere('type', 'like', '%' . $request->get('search') . '%')
+                    ->orWhere('kode', 'like', '%' . $request->get('search') . '%');
             });
         })
-        ->when(!is_null($request->get('type')) , function($query) use ($request) {
-            return $query->whereIn('type' , $request->get('type'));
-        })
-        ->orderBy('kode', 'desc')
-        ->paginate(10);
+            ->when(!is_null($request->get('type')), function ($query) use ($request) {
+                return $query->whereIn('type', $request->get('type'));
+            })
+            ->orderBy('kode', 'desc')
+            ->paginate(10);
 
         return view('kriteria.index', compact('kriterias'));
     }

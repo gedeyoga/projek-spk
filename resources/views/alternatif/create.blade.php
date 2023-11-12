@@ -44,12 +44,20 @@
                                     @foreach ($kriterias as $kriteria)
                                         <div class="col-sm-10">
                                             <label for="name" class="col-form-label">{{ $kriteria->name }}</label>
-                                            <input type="number" name="{{ $kriteria->name }}"
-                                                class="form-control @error($kriteria->name) is-invalid @enderror"
-                                                value="{{ old($kriteria->name) }}" autocomplete="off"
-                                                placeholder="Masukkan {{ $kriteria->name }}.." required>
+                                            <select name="{{ $kriteria->name }}"
+                                                onchange="changeHandler(this, '{{ $kriteria->kriteria_nilai[0] ?? '' }}', '{{ $kriteria->name }}')"
+                                                class="form-control" autocomplete="off" required>
+                                                <option>Pilih nilai</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                            <p id="{{ $kriteria->name }}"></p>
                                         </div>
                                     @endforeach
+
 
                                 </div>
                                 <button type="submit" class="btn btn-primary">Tambah Alterantif</button>
@@ -65,4 +73,33 @@
 
     </div>
     <!-- /.content -->
+
+    @push('javascript')
+        <script>
+            function elemen(elemen, currentElemen, jsonData) {
+                setTimeout(() => {
+                    const elemenName = document.getElementById(elemen);
+
+                    if (currentElemen.value === '1') {
+                        elemenName.innerHTML = `Keterangan : ${jsonData.ket1}`
+                    } else if (currentElemen.value === '2') {
+                        elemenName.innerHTML = `Keterangan : ${jsonData.ket2}`;
+                    } else if (currentElemen.value === '3') {
+                        elemenName.innerHTML = `Keterangan : ${jsonData.ket3}`
+                    } else if (currentElemen.value === '4') {
+                        elemenName.innerHTML = `Keterangan : ${jsonData.ket4}`
+                    } else if (currentElemen.value === '5') {
+                        elemenName.innerHTML = `Keterangan : ${jsonData.ket5}`
+                    }
+                }, 1);
+            }
+
+            function changeHandler(currentElemen, data, nameElemen) {
+                const jsonData = JSON.parse(data);
+                elemen(nameElemen, currentElemen, jsonData)
+
+
+            }
+        </script>
+    @endpush
 @endsection

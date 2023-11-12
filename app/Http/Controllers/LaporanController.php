@@ -37,7 +37,8 @@ class LaporanController extends Controller
 
         $company = Company::first();
 
-        $pdf = PDF::set_option("enable_remote", true)->loadView('laporan.laporan-ranking' , [
+
+        $pdf = PDF::set_option("enable_remote", true)->loadView('laporan.laporan-ranking', [
             'kriteria' => $kriteria,
             'alternatif' => $alternatif,
             'terbobot' => $terbobot,
@@ -70,6 +71,6 @@ class LaporanController extends Controller
 
         $company = Company::first();
 
-        return view('laporan.index' , compact(['kriteria' , 'alternatif' , 'terbobot' , 'company']));
+        return view('laporan.index', compact(['kriteria', 'alternatif', 'terbobot', 'company']));
     }
 }
