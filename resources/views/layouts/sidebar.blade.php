@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="{{ url('/') }}" class="brand-link d-flex align-items-center">
 
-  <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="{{ env('APP_NAME') }}" class="brand-image img-circle elevation-3" style="opacity: 0.8" />
+  <img src="{{ asset('image/logo.jpeg') }}" alt="{{ env('APP_NAME') }}" class="brand-image img-circle elevation-3" style="opacity: 0.8" />
         <span class="brand-text font-weight-light ml-2" style="text-wrap: wrap;">
             {{ env('APP_NAME') }}
         </span>
