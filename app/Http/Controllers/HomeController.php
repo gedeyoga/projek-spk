@@ -42,7 +42,7 @@ class HomeController extends Controller
             $alternatif = AlternatifRecord::where('periode', $periode)->get();
 
             $terbobot = $this->pencarianNilaiRanking($alternatif, true);
-        } else {
+        } else if ((strtotime($periode) == strtotime(date('Y-01-01')))) {
             $kriteria = Kriteria::orderBy('id', 'asc')->get();
             $alternatif = Alternatif::all();
 

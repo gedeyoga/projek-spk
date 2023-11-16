@@ -44,10 +44,12 @@ trait PerhitunganMoora
             $min = collect();
 
             foreach ($alternatif->penilaian as $data_nilai) {
-                if($data_nilai->kriteria->type == 'benefit') {
-                    $max->push($data_nilai);
-                }else {
-                    $min->push($data_nilai);
+                if(!is_null($data_nilai)) {
+                    if ($data_nilai->kriteria->type == 'benefit') {
+                        $max->push($data_nilai);
+                    } else {
+                        $min->push($data_nilai);
+                    }
                 }
             }
 

@@ -47,17 +47,19 @@
                 <div class="d-flex justify-content-between">
                     <span>Data Kriteria</span>
                     <span>
-                        <a class="btn btn-outline-dark float-left mr-3" href="{{  route('laporan.ranking', ['periode' => request()->get('periode' , date('Y'))]) }}" target="_blank">
-                            <i class="fas fa-print"></i>
-                            Cetak PDF
-                        </a>
+                        @if($can_print)
+                            <a class="btn btn-outline-dark float-left mr-3" href="{{  route('laporan.ranking', ['periode' => request()->get('periode' , date('Y'))]) }}" target="_blank">
+                                <i class="fas fa-print"></i>
+                                Cetak PDF
+                            </a>
+                        @endif
                         @if(request()->get('periode' , date('Y')) == date('Y'))
-                            <form action="{{ route('perhitungan.save') }}" method="post" class="float-left">
-                                @csrf
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save"></i> Simpan Perhitungan
-                                </button>
-                            </form>
+                        <form action="{{ route('perhitungan.save') }}" method="post" class="float-left">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Simpan Perhitungan
+                            </button>
+                        </form>
                         @endif
                     </span>
                 </div>

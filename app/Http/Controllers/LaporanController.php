@@ -62,15 +62,17 @@ class LaporanController extends Controller
             $alternatif = AlternatifRecord::where('periode', $periode)->get();
 
             $terbobot = $this->pencarianNilaiRanking($alternatif, true);
-        } else {
+        } else if ((strtotime($periode) == strtotime(date('Y-01-01')))) {
             $kriteria = Kriteria::orderBy('id', 'asc')->get();
             $alternatif = Alternatif::all();
 
             $terbobot = $this->pencarianNilaiRanking($alternatif);
         }
 
+        $can_print = $alternatif->count() > 0;
+
         $company = Company::first();
 
-        return view('laporan.index', compact(['kriteria', 'alternatif', 'terbobot', 'company']));
+        return view('laporan.index', compact(['kriteria', 'alternatif', 'terbobot', 'company' , 'can_print']));
     }
 }

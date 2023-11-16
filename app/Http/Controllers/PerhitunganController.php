@@ -27,14 +27,23 @@ class PerhitunganController extends Controller
             $alternatif = AlternatifRecord::where('periode', $periode)->get();
 
             $terbobot = $this->pencarianNilaiRanking($alternatif , true);
-        }else {
+        }else if((strtotime($periode) == strtotime(date('Y-01-01'))) ) {
             $kriteria = Kriteria::orderBy('id', 'asc')->get();
             $alternatif = Alternatif::all();
 
             $terbobot = $this->pencarianNilaiRanking($alternatif);
         }
 
-        return view('perhitungan.index' , compact(['kriteria' , 'alternatif' , 'terbobot']));
+        $can_print = $alternatif->count() > 0;
+        $can_save = (strtotime($periode) == strtotime(date('Y-01-01')));
+
+        return view('perhitungan.index' , compact([
+            'kriteria' , 
+            'alternatif' , 
+            'terbobot',
+            'can_print',
+            'can_save'
+        ]));
     }
 
     public function saveRecordPerhitungan(Request $request)
