@@ -25,7 +25,6 @@ class UpdateKriteriaRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'nilai_bobot' => 'required',
             'type' => 'required|in:benefit,cost',
         ];
     }

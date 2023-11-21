@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ env('APP_NAME') }} | Log in</title>
 
     <!-- Google Font: Source Sans Pro -->
@@ -15,6 +16,7 @@
     <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="{{ asset('plugins/sweetalert2/sweetalert2.css') }}" />
 </head>
 
 <body class="hold-transition login-page">
@@ -34,9 +36,9 @@
                         {{ $message }}
                     </div>
                 @enderror
-                <form method="POST" action="{{ route('login') }}">
+                <form id="auth-form" method="POST" action="{{ route('login') }}">
                     @csrf
-                    <div class="input-group mb-3">
+                    <div class="input-group is-invalid">
                         <input type="email" class="form-control" placeholder="Email" name="email">
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -44,7 +46,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="input-group mt-3 is-invalid">
                         <input type="password" class="form-control" placeholder="Password" name="password">
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -52,7 +54,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-8">
                             <div class="icheck-primary">
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember"
@@ -87,11 +89,51 @@
     <!-- /.login-box -->
 
     <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
+    <script src="{{ asset('plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('js/public.js') }}"></script>
+    <script>
+        $("#auth-form").submit(function(e) {
+            e.preventDefault();
+            $('#auth-form input').removeClass('is-invalid');
+
+            $.ajax({
+                type: "POST",
+                data: $(this).serialize(),
+                url: "{{ route('login') }}",
+                beforeSend: function() {
+                    Swal.showLoading()
+                },
+                success: function(response) {
+                    Swal.fire(
+                        'Pemberitahuan',
+                        'Login Berhasil',
+                        'success'
+                    );
+
+                    window.location.href = '{{ route("home") }}';
+                },
+                error: function(err) {
+                    $('#auth-form .invalid-feedback').remove();
+                    Swal.close();
+                    for (const key in err.responseJSON.errors) {
+
+
+                        $('#auth-form input[name="' + key + '"]').addClass('is-invalid');
+                        $('#auth-form select[name="' + key + '"]').addClass('is-invalid');
+                        $('<div class="invalid-feedback">' + err.responseJSON.errors[key][0] + '</div>').insertAfter($('#auth-form input[name="' + key + '"]').parent());
+                        $('<div class="invalid-feedback">' + err.responseJSON.errors[key][0] + '</div>').insertAfter($('#auth-form select[name="' + key + '"]').parent());
+                    }
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>

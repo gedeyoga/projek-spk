@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class CreateKriteriaRequest extends FormRequest
+class CreateKriteriaNilaiRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +25,15 @@ class CreateKriteriaRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'type' => 'required|in:benefit,cost',
+            'kriteria' => [
+                'required',
+                Rule::unique('kriteria_nilais','kriteria_id'),
+            ],
+            'nilai1' => 'required',
+            'nilai2' => 'required',
+            'nilai3' => 'required',
+            'nilai4' => 'required',
+            'nilai5' => 'required',
         ];
     }
 }

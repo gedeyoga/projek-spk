@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateKriteriaNilaiRequest;
 use App\Models\Kriteria;
 use App\Models\KriteriaNilai;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class NilaiKriteriaController extends Controller
         return view('nilai-kriteria.index', compact('nilaiKriterias', 'kriterias'));
     }
 
-    public function store(Request $request)
+    public function store(CreateKriteriaNilaiRequest $request)
     {
 
         $kriteriaId = $request->kriteria;

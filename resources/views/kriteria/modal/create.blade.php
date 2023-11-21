@@ -28,12 +28,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="nilai_bobot" class="col-sm-2 col-form-label">Nilai Bobot</label>
-                        <div class="col-sm-10">
-                            <input type="number" step="0.01" name="nilai_bobot" class="form-control @error('nilai_bobot') is-invalid @enderror" value="{{ old('nilai_bobot') }}" autocomplete="off" placeholder="Masukkan nilai bobot...">
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

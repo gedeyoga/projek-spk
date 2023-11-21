@@ -13,6 +13,12 @@
 
                     @csrf
                     <div class="form-group row">
+                        <label for="code" class="col-sm-2 col-form-label">Kode</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="kode" class="form-control" autocomplete="off" placeholder="kode" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
                             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" autocomplete="off" placeholder="Masukkan kriteria...">
@@ -28,13 +34,6 @@
                             </select>
                         </div>
                     </div>
-
-                    <div class="form-group row">
-                        <label for="nilai_bobot" class="col-sm-2 col-form-label">Nilai Bobot</label>
-                        <div class="col-sm-10">
-                            <input type="number" step="0.01" name="nilai_bobot" class="form-control @error('nilai_bobot') is-invalid @enderror" value="{{ old('nilai_bobot') }}" autocomplete="off" placeholder="Masukkan nilai bobot...">
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -47,13 +46,15 @@
 @push('javascript')
 <script>
     function onShowModal(id) {
-        
+
         $.ajax({
             type: "GET",
             data: {
                 "_token": $('meta[name="csrf-token"]')[0].content
             },
-            url: route('kriteria.edit' , {kriteria: id}),
+            url: route('kriteria.edit', {
+                kriteria: id
+            }),
             beforeSend: function() {
                 Swal.showLoading()
             },
@@ -61,15 +62,17 @@
                 Swal.close();
                 $('#form-edit-kriteria input[name="kriteria_id"]').remove();
                 $('#modalEditFormKriteria').modal('show');
+                let kode = $('#form-edit-kriteria input[name="kode"]');
                 let name = $('#form-edit-kriteria input[name="name"]');
                 let nilai_bobot = $('#form-edit-kriteria input[name="nilai_bobot"]');
                 let type = $('#form-edit-kriteria select[name="type"]');
 
+                kode.val(response.data.kode);
                 name.val(response.data.name);
                 nilai_bobot.val(response.data.nilai_bobot);
                 type.val(response.data.type);
-                
-                $('#form-edit-kriteria').append('<input type="hidden" name="kriteria_id" value="'+id+'">');
+
+                $('#form-edit-kriteria').append('<input type="hidden" name="kriteria_id" value="' + id + '">');
             },
             error: function(err) {
                 Swal.close();
@@ -84,7 +87,9 @@
             $.ajax({
                 type: "POST",
                 data: $(this).serialize(),
-                url: route("kriteria.update", {kriteria: $('#form-edit-kriteria input[name="kriteria_id"]').val()}),
+                url: route("kriteria.update", {
+                    kriteria: $('#form-edit-kriteria input[name="kriteria_id"]').val()
+                }),
                 beforeSend: function() {
                     Swal.showLoading()
                 },

@@ -37,6 +37,10 @@
                                 <div class="form-group row">
 
                                     <div class="col-sm-10">
+                                        <label for="code" class="col-sm-2 col-form-label">Kode</label>
+                                        <input type="text" name="kode" class="form-control" value="{{ $alternatif->kode }}" autocomplete="off" placeholder="kode" readonly>
+                                    </div>
+                                    <div class="col-sm-10">
                                         <label for="name" class="col-form-label">Nama</label>
                                         <input type="text" name="name"
                                             class="form-control @error('name') is-invalid @enderror"
