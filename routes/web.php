@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlternatifController;
+use App\Http\Controllers\BarsController;
 use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -73,4 +74,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Company
     Route::get('/setting', [CompanyController::class, 'edit'])->name('company.edit');
     Route::put('/setting/{company}/update', [CompanyController::class, 'update'])->name('company.update');
+
+    //Bars
+    Route::get('/bars', [BarsController::class, 'index'])->name('bars.index');
 });

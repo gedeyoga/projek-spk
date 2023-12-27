@@ -62,6 +62,16 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ route('bars.index') }}"
+                        class="nav-link {{ request()->segment(1) == 'bars' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>
+                            Bars
+                        </p>
+                    </a>
+                </li>
+
 
                 <li class="nav-item">
                     <a href="{{ route('user.index') }}"
