@@ -13,6 +13,11 @@ class BarsController extends Controller
         $kriterias = Kriteria::with('kriteria_nilai')->get();
 
 
-        return view('bars.index', compact('kriterias'));
+        return view('bars.final-instrument', compact('kriterias'));
+    }
+
+    public function incident(Request $request)
+    {
+        return view('bars.critical-incident');
     }
 }

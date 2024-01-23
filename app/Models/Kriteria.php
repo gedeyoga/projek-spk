@@ -36,4 +36,14 @@ class Kriteria extends Model
     {
         return  $this->hasMany(KriteriaNilai::class, 'kriteria_id');
     }
+
+    public function critical_incidents()
+    {
+        return $this->hasMany(CriticalIncident::class, 'kriteria_id');
+    }
+
+    public function performances()
+    {
+        return $this->hasMany(Performance::class, 'kriteria_id');
+    }
 }

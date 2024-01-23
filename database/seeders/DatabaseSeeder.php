@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Alternatif;
+use App\Models\CriticalIncident;
 use App\Models\Kriteria;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RangkingsSeeder;
@@ -23,5 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(KriteriaSeeder::class);
         $this->call(AlternatifSeeder::class);
         $this->call(AlternatifRecordSeeder::class);
+        $this->call(CriticalIncidentSeeder::class);
+        $this->call(PerformanceSeeders::class);
     }
 }

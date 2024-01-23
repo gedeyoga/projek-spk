@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\BarsController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CriticalIncidentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\NilaiKriteriaController;
+use App\Http\Controllers\PerformanceController;
 use App\Http\Controllers\PerhitunganController;
 
 /*
@@ -76,5 +78,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/setting/{company}/update', [CompanyController::class, 'update'])->name('company.update');
 
     //Bars
-    Route::get('/bars', [BarsController::class, 'index'])->name('bars.index');
+    Route::get('/bars/critical-incident', [CriticalIncidentController::class, 'index'])->name('bars.critical-incident');
+    Route::post('/bars/critical-incident', [CriticalIncidentController::class, 'store'])->name('bars.critical-incident.store');
+    Route::get('/bars/critical-incident/{critical}', [CriticalIncidentController::class, 'show'])->name('bars.critical-incident.show');
+    Route::put('/bars/critical-incident/{critical}', [CriticalIncidentController::class, 'update'])->name('bars.critical-incident.update');
+    Route::delete('/bars/critical-incident/{critical}', [CriticalIncidentController::class, 'destroy'])->name('bars.critical-incident.destroy');
+
+    Route::get('/bars/performance', [PerformanceController::class, 'index'])->name('bars.performance');
+    Route::post('/bars/performance', [PerformanceController::class, 'store'])->name('bars.performance.store');
+    Route::get('/bars/performance/{performance}', [PerformanceController::class, 'show'])->name('bars.performance.show');
+    Route::put('/bars/performance/{performance}', [PerformanceController::class, 'update'])->name('bars.performance.update');
+    Route::delete('/bars/performance/{performance}', [PerformanceController::class, 'destroy'])->name('bars.performance.destroy');
+
+    Route::get('/bars/final-instrument', [BarsController::class, 'index'])->name('bars.final-instrument');
 });
