@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Nov 16, 2023 at 04:24 PM
+-- Generation Time: Jan 23, 2024 at 05:23 PM
 -- Server version: 8.0.28
 -- PHP Version: 8.0.15
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alternatif` (
   `id` bigint UNSIGNED NOT NULL,
-  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -54,8 +54,8 @@ INSERT INTO `alternatif` (`id`, `kode`, `name`, `created_at`, `updated_at`) VALU
 CREATE TABLE `alternatif_records` (
   `id` bigint UNSIGNED NOT NULL,
   `periode` date NOT NULL,
-  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -77,7 +77,7 @@ INSERT INTO `alternatif_records` (`id`, `periode`, `kode`, `name`, `created_at`,
 
 CREATE TABLE `auto_numbers` (
   `id` int UNSIGNED NOT NULL,
-  `name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `number` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -99,10 +99,10 @@ INSERT INTO `auto_numbers` (`id`, `name`, `number`, `created_at`, `updated_at`) 
 
 CREATE TABLE `companies` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `logo` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `logo` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -117,16 +117,44 @@ INSERT INTO `companies` (`id`, `name`, `phone`, `address`, `logo`, `created_at`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `critical_incidents`
+--
+
+CREATE TABLE `critical_incidents` (
+  `id` bigint UNSIGNED NOT NULL,
+  `kriteria_id` int UNSIGNED NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `critical_incidents`
+--
+
+INSERT INTO `critical_incidents` (`id`, `kriteria_id`, `description`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Selalu dating terlambat dan absen tanpa alasan yang jelas', '2024-01-23 17:19:42', '2024-01-23 17:19:42'),
+(2, 1, 'Kehadiran/tingkat presensi 26% - 45%', '2024-01-23 17:19:42', '2024-01-23 17:19:42'),
+(3, 2, 'Tidak mengerjakan tugas yang berikan atasan', '2024-01-23 17:19:42', '2024-01-23 17:19:42'),
+(4, 2, 'Mengerjakan tugas yang di berikan atasan namun mengalami kendala dan tidak sesuai dengan instruksi atasan.', '2024-01-23 17:19:42', '2024-01-23 17:19:42'),
+(5, 3, 'Selalu melanggar aturan-aturan dan prosedur kerja juga instruksi yang diberikan atasan', '2024-01-23 17:19:42', '2024-01-23 17:19:42'),
+(6, 3, 'Melakukan pelanggaran atas aturan-aturan dan prosedur kerja serta instruksi dari atasan lebih dari 1 kali dalam seminggu', '2024-01-23 17:19:42', '2024-01-23 17:19:42'),
+(7, 4, 'Tidak bisa sama sekali dalam berkoordinasi dan berkomunikasi dalam lingkungan kerja', '2024-01-23 17:19:42', '2024-01-23 17:19:42'),
+(8, 4, 'Tidak menerima keputusan bersama apabila bertentangan dengan pendapatnya', '2024-01-23 17:19:42', '2024-01-23 17:19:42');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
   `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -138,10 +166,10 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `kriteria` (
   `id` bigint UNSIGNED NOT NULL,
-  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` enum('benefit','cost') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `optimum` enum('min','max') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('benefit','cost') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `optimum` enum('min','max') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -166,11 +194,11 @@ INSERT INTO `kriteria` (`id`, `kode`, `name`, `type`, `optimum`, `created_at`, `
 CREATE TABLE `kriteria_nilais` (
   `id` bigint UNSIGNED NOT NULL,
   `kriteria_id` int NOT NULL,
-  `ket1` text COLLATE utf8mb4_unicode_ci,
-  `ket2` text COLLATE utf8mb4_unicode_ci,
-  `ket3` text COLLATE utf8mb4_unicode_ci,
-  `ket4` text COLLATE utf8mb4_unicode_ci,
-  `ket5` text COLLATE utf8mb4_unicode_ci,
+  `ket1` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `ket2` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `ket3` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `ket4` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `ket5` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -194,10 +222,10 @@ INSERT INTO `kriteria_nilais` (`id`, `kriteria_id`, `ket1`, `ket2`, `ket3`, `ket
 CREATE TABLE `kriteria_records` (
   `id` bigint UNSIGNED NOT NULL,
   `periode` date NOT NULL,
-  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` enum('benefit','cost') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `optimum` enum('min','max') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('benefit','cost') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `optimum` enum('min','max') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -221,7 +249,7 @@ INSERT INTO `kriteria_records` (`id`, `periode`, `kode`, `name`, `type`, `optimu
 
 CREATE TABLE `migrations` (
   `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -244,7 +272,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (12, '2023_11_12_080257_create_alternatif_records_table', 1),
 (13, '2023_11_12_080510_create_penilaian_records_table', 1),
 (14, '2023_11_12_080743_create_kriteria_records_table', 1),
-(15, '2023_11_12_081610_create_kriteria_nilais_table', 1);
+(15, '2023_11_12_081610_create_kriteria_nilais_table', 1),
+(16, '2024_01_23_145717_create_critical_incidents_table', 2),
+(17, '2024_01_23_165557_create_performances_table', 2);
 
 -- --------------------------------------------------------
 
@@ -253,8 +283,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -331,16 +361,48 @@ INSERT INTO `penilaian_records` (`id`, `alternatif_id`, `kriteria_id`, `nilai`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `performances`
+--
+
+CREATE TABLE `performances` (
+  `id` bigint UNSIGNED NOT NULL,
+  `kriteria_id` int UNSIGNED NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `performances`
+--
+
+INSERT INTO `performances` (`id`, `kriteria_id`, `description`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Secara konsisten, selalu hadir tetpat waktu, dengan tingkat absensi 0%', '2024-01-23 17:19:55', '2024-01-23 17:19:55'),
+(2, 1, 'Kehadiran/tingkat presensi 76% - 99%', '2024-01-23 17:19:55', '2024-01-23 17:19:55'),
+(3, 1, 'Kehadiran/tingkat presensi 50% - 75%', '2024-01-23 17:19:55', '2024-01-23 17:19:55'),
+(4, 2, 'Mengerjakan tugas yang di berikan sesuai dengan instruksi yang diberikan', '2024-01-23 17:19:55', '2024-01-23 17:19:55'),
+(5, 2, 'Mengerjakan tugas yang diberikan atasan namun masih mengalami kendala dalam pelaksanaanya', '2024-01-23 17:19:55', '2024-01-23 17:19:55'),
+(6, 2, 'Mengerjakan tugas yang diberikan meskipun tidak sesuai dengan instruksi yang diberikan atasan', '2024-01-23 17:19:55', '2024-01-23 17:19:55'),
+(7, 3, 'Selalu mentaati aturan-aturan dan prosedur kerja serta menepati instruksi yang diberikan atasan', '2024-01-23 17:19:55', '2024-01-23 17:19:55'),
+(8, 3, 'Sekali tidak menaati aturan-aturan dan prosedur kerja serta menepati instruksi yang dibeerikan atasan', '2024-01-23 17:19:55', '2024-01-23 17:19:55'),
+(9, 3, 'Tidak melakukan dan mentaati perintah atasan lebih dari 3 kali dalam sebulan', '2024-01-23 17:19:55', '2024-01-23 17:19:55'),
+(10, 4, 'Mampu berkoordinasi dan berkomunikasi dengan berbagai pihak, dan menghargai pendapat orang lain, serta mampu menyelesaikan masalah kerja tim', '2024-01-23 17:19:55', '2024-01-23 17:19:55'),
+(11, 4, 'Mampu berkoordinasi dan berkomunikasi dengan baik tetapi kurang mampu dalam menyelesaikan masalah kerja tim', '2024-01-23 17:19:55', '2024-01-23 17:19:55'),
+(12, 4, 'Kurang mampu berkoordinasi,dan  berkomunikasi serta kurang mampu menyelesaikan masalah kerja tim', '2024-01-23 17:19:55', '2024-01-23 17:19:55');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -368,11 +430,11 @@ CREATE TABLE `rankings` (
 
 CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -410,6 +472,12 @@ ALTER TABLE `auto_numbers`
 -- Indexes for table `companies`
 --
 ALTER TABLE `companies`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `critical_incidents`
+--
+ALTER TABLE `critical_incidents`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -465,6 +533,12 @@ ALTER TABLE `penilaian_records`
   ADD KEY `penilaian_records_alternatif_id_foreign` (`alternatif_id`);
 
 --
+-- Indexes for table `performances`
+--
+ALTER TABLE `performances`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
@@ -514,6 +588,12 @@ ALTER TABLE `companies`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `critical_incidents`
+--
+ALTER TABLE `critical_incidents`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -541,7 +621,7 @@ ALTER TABLE `kriteria_records`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `penilaian`
@@ -553,6 +633,12 @@ ALTER TABLE `penilaian`
 -- AUTO_INCREMENT for table `penilaian_records`
 --
 ALTER TABLE `penilaian_records`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `performances`
+--
+ALTER TABLE `performances`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
