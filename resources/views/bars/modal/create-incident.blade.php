@@ -1,9 +1,9 @@
-<div class="modal fade" id="modalPerformanceForm" tabindex="-1" aria-labelledby="modalFormKriteriaLabel" aria-hidden="true">
+<div class="modal fade" id="modalCriticalIncidentForm" tabindex="-1" aria-labelledby="modalFormKriteriaLabel" aria-hidden="true">
     <form id="form-create-performance" method="post" action="{{ route('user.store') }}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalFormKriteriaLabel">Tambah Performance</h5>
+                    <h5 class="modal-title" id="modalFormKriteriaLabel">Tambah Critical Incident</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -23,11 +23,11 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="description" class="col-sm-2 col-form-label">Performance</label>
+                        <label for="description" class="col-sm-2 col-form-label">Critical Incident</label>
                         <div class="col-sm-10">
                             <input type="description" name="description"
                                 class="form-control @error('description') is-invalid @enderror" value="{{ old('description') }}"
-                                autocomplete="off" placeholder="Masukkan Performances...">
+                                autocomplete="off" placeholder="Masukkan Critical Incidents...">
                         </div>
                     </div>
 
@@ -43,7 +43,7 @@
 @push('javascript')
     <script>
         function onClickCreateModal() {
-            $('#modalPerformanceForm').modal('show');
+            $('#modalCriticalIncidentForm').modal('show');
         }
 
         $(document).ready(function() {
@@ -53,7 +53,7 @@
                 $.ajax({
                     type: "POST",
                     data: $(this).serialize(),
-                    url: "{{ route('bars.performance.store') }}",
+                    url: "{{ route('bars.critical-incident.store') }}",
                     beforeSend: function() {
                         Swal.showLoading()
                     },
@@ -64,7 +64,7 @@
                             'success'
                         ).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = "{{ route('bars.performance') }}";
+                                window.location.href = "{{ route('bars.critical-incident') }}";
                             }
                         });
 
